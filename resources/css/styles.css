@@ -1,0 +1,109 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
+@font-face {
+    font-family: 'Khand Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Khand Regular'), url('/resources/fonts/Khand-Regular.woff') format('woff');
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: 72px;
+}
+
+.w-90 {
+    width: 83px;
+}
+
+.bi-cup-hot-fill {
+    top: -2.5px;
+}
+
+.main-padding {
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+
+.banner-color {
+    background-color: #E8E8EE;
+}
+
+.banner {
+    overflow: hidden;
+}
+
+.khandi-font {
+    font-family: 'Khand Regular';
+}
+.inter-font {
+    font-family: "Inter";
+}
+
+.inn-shadow {
+    box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.w-30 {
+    width: 30%;
+}
+.w-25rem {
+    width: 25rem;
+}
+
+.w-20rem {
+    width: 23rem;
+}
+
+.h-15rem {
+    height: 15rem;
+}
+
+.min-h-15rem {
+    min-height: 15rem;
+}
+
+.fs-2rem {
+    font-size: 2.65rem;
+}
+
+.fs-small {
+    font-size: 0.8rem;
+}
+
+.bottom-25 {
+    bottom: 25%;
+}
+
+.img-clip-path {
+    height: 150px;
+    /* display: block;
+    object-fit: cover; */
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+
+
+.card-img-container {
+    width: 100%;
+    height: 192px;
+    overflow: hidden;
+}
+  
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Corta e ajusta a imagem para preencher o contêiner */
+}
