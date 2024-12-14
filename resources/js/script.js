@@ -21,13 +21,16 @@ header.appendChild(nav);
 
 
 let main = document.createElement("main");
-main.className = "w-100 h-100 main-padding py-2 vstack";
+main.className = "w-100 min-h-100 main-padding py-2 vstack";
 
 let coffees = await getCoffees();
 main.appendChild(createBanner());
 main.appendChild(await createProductList(coffees));
-
+let footer = document.createElement("footer");
+footer.className = "w-100 d-flex justify-content-center align-items-center shadow-lg bg-dark text-white";
+footer.innerText = "Powered By Vitor Paulino";
 
 // PÁGINA
 root.appendChild(header);
 root.appendChild(main);
+root.appendChild(footer);

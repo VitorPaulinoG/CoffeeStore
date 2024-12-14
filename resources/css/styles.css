@@ -115,6 +115,12 @@ header {
     justify-content: space-between;
     column-gap: 1rem;
 }
+
+
+footer {
+    justify-self: end;
+    min-height: 40px;
+}
 @media (max-width: 1280px) {
     .product-list {
       justify-content: flex-start; /* Alinha os itens à esquerda */
