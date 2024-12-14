@@ -1,0 +1,37 @@
+# Node.js
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Diretórios de dependências
+bower_components/
+
+# Arquivos de ambiente
+.env
+.env.test
+.env.production
+
+# Diretórios temporários de build
+dist/
+build/
+
+# Arquivos de configuração do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de editor
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Arquivos de testes
+coverage/
+
+# Arquivos de cache
+.cache/
