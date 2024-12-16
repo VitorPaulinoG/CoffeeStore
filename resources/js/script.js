@@ -1,36 +1,30 @@
-import { createBanner } from "./components/banner.js";
-import { createCartButton } from "./components/cartButton.js";
-import { createLogo } from "./components/logo.js";
-import { createProductList } from "./components/productList.js";
-import { getCoffees } from "./services/coffeeService.js";
+import { createFooter } from "./components/footer.js";
+import { createHeader } from "./components/header.js";
+import { createCartPage } from "./pages/cartPage.js";
+import { createShoppingPage } from "./pages/shoppingPage.js";
 
 const root = document.getElementById("root");
+if (localStorage.getItem('cart') === null) {
+    localStorage.setItem('cart', JSON.stringify([])); // Inicializa como um array vazio
+}
 
-// const createHeader = () => {
-
-// };
 root.className = "vstack align-items-center";
-let header = document.createElement("header");
-header.className = "w-100 px-5 border shadow d-flex justify-content-between align-items-center";
-
-
-let nav = document.createElement("nav");
-nav.appendChild(createCartButton(0));
-header.appendChild(createLogo());
-header.appendChild(nav);
-
+let mainContent = await createShoppingPage();
 
 let main = document.createElement("main");
-main.className = "w-100 min-h-100 main-padding py-2 vstack";
-
-let coffees = await getCoffees();
-main.appendChild(createBanner());
-main.appendChild(await createProductList(coffees));
-let footer = document.createElement("footer");
-footer.className = "w-100 d-flex justify-content-center align-items-center shadow-lg bg-dark text-white";
-footer.innerText = "Powered By Vitor Paulino";
-
+main.className = "d-flex min-w-100 min-h-100 w-100 justify-content-center";
+main.appendChild(mainContent);
 // PÁGINA
-root.appendChild(header);
+root.appendChild(createHeader());
 root.appendChild(main);
-root.appendChild(footer);
+root.appendChild(createFooter());
+
+window.addEventListener('cartButtonClick', (e) => {
+    console.log("PASSOU AQUI");
+    main.innerHTML = " ";
+
+    main.className = "d-flex min-w-100 min-h-100 w-100 justify-content-center mt-5 h-100";
+    main.appendChild(createCartPage());
+    // main.innerHTML = 
+});
+

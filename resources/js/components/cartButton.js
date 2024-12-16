@@ -6,8 +6,17 @@ export function createCartButton (productCount) {
         `
         <i class="bi bi-cart4 fs-2"></i> 
         <span class="badge text-bg-light">
-            <span class="text-bg-light px-1 fs-6 fw-semibold inter-font">${productCount}</span>
+            <span id="cart-badge" class="text-bg-light px-1 fs-6 fw-semibold inter-font">${productCount}</span>
         </span>
         `;
+    cartButton.addEventListener('click', () => {
+        console.log("CLICOU");
+        window.dispatchEvent(new CustomEvent('cartButtonClick', {}));
+    });
+    let badge = cartButton.querySelector("#cart-badge");
+    
+    window.addEventListener('orderAdded', (e) => {
+        badge.innerText = e.detail.cartLength();
+    });
     return cartButton;
 }

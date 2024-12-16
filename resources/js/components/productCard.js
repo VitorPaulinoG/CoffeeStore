@@ -1,6 +1,8 @@
+import { addItem, getCartLength } from "../services/cartService.js";
 
 export function createProductCard (product) {
     let card = document.createElement("div");
+    
     card.className = "card shadow border border-0 rounded-3 product-card flex-grow-0";
     card.innerHTML = 
         `
@@ -22,5 +24,15 @@ export function createProductCard (product) {
             </div>
         </div>
         `;
+
+    const button = card.querySelector("button");
+    button.addEventListener("click", () => {
+        addItem (product);
+        window.dispatchEvent(new CustomEvent('orderAdded', {
+            detail: {
+                cartLength: () => getCartLength()
+            }
+        }));
+    })
     return card;
 }
