@@ -145,7 +145,6 @@ header {
 .order-main-content {
     min-width: 18rem; 
 }
-
 .card-img-container img {
     width: 100%;
     height: 100%;
@@ -171,8 +170,8 @@ footer {
 }
 
 .product-list {
-    justify-content: space-between; /* Alinha os itens à esquerda */
-   
+    
+    justify-content: start
 }
 @media only screen and (max-width: 1280px) {
     .product-list {

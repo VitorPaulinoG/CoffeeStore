@@ -1,8 +1,14 @@
 import { Order } from "../models/Order.js";
-
+export function updateAmount(orderId, amount) {
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]'); 
+    const cartMap = new Map(cart);
+    let order = cartMap.get(orderId);
+    order.amount += amount;
+    localStorage.setItem('cart', JSON.stringify([...cartMap])); 
+}
 export function addItem(product) {
     // Recuperar o cart do localStorage e converter para Map
-    let cart = JSON.parse(localStorage.getItem('cart') || '[]'); // Garante que será um array vazio se não existir
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]'); 
     const cartMap = new Map(cart);
     try {
         let order = cartMap.get(product.id);
@@ -17,6 +23,12 @@ export function addItem(product) {
     }
 
     localStorage.setItem('cart', JSON.stringify([...cartMap])); 
+}
+
+export function getOrders () {
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    const cartMap = new Map(cart);
+    return Array.from(cartMap.values());
 }
 
 export function getCartLength() {

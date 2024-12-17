@@ -3,7 +3,7 @@ import { addItem, getCartLength } from "../services/cartService.js";
 export function createProductCard (product) {
     let card = document.createElement("div");
     
-    card.className = "card shadow border border-0 rounded-3 product-card flex-grow-0";
+    card.className = "card shadow border border-0 rounded-3 product-card mx-auto flex-grow-0";
     card.innerHTML = 
         `
         <div class="card-img-container">
