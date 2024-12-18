@@ -1,10 +1,11 @@
-import { updateAmount } from "../services/cartService.js";
+import { orderAddedOrUpdatedEvent } from "../events/OrderAddedOrUpdatedEvent.js";
+import { updateAmount, getCartLength } from "../services/cartService.js";
 
 
 export function createOrderCard (order) {
 
     let card = document.createElement('div');
-    card.id = `${order.product.id}`;
+    card.id = `order${order.product.id}`;
     card.className = "d-flex flex-row shadow rounded border border-0 order-card";
     card.innerHTML = 
         `
@@ -25,7 +26,7 @@ export function createOrderCard (order) {
                     </div>
                     <div class="d-flex flex-row column-gap-2">
                         <div class="d-flex order-badge-container">
-                            <div class="d-flex fw-medium justify-content-center align-items-center 
+                            <div id="amount-badge-${order.product.id}" class="d-flex fw-medium justify-content-center align-items-center 
                                 inter-font badge rounded-1 inn-shadow text-dark fs-4 order-badge w-100">
                                 ${order.amount}
                             </div>
@@ -41,12 +42,20 @@ export function createOrderCard (order) {
         `;
     const plus = card.querySelector(".plus");
     plus.addEventListener("click", () => {
-        updateAmount (order.product.id, 1);
+        
+        let amountBadge = card.querySelector(`#amount-badge-${order.product.id}`);
+        
+        amountBadge.innerText = updateAmount (order.product.id, 1);
+        window.dispatchEvent(new orderAddedOrUpdatedEvent());
     });
 
     const minus = card.querySelector(".minus");
     minus.addEventListener("click", () => {
-        updateAmount (order.product.id, -1);
+        let amountBadge = card.querySelector(`#amount-badge-${order.product.id}`);
+        if(parseInt(amountBadge.innerText) <= 0) 
+            return;
+        amountBadge.innerText = updateAmount (order.product.id, -1);
+        window.dispatchEvent(new orderAddedOrUpdatedEvent());
     });
 
     return card;

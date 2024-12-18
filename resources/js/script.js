@@ -21,10 +21,9 @@ root.appendChild(main);
 root.appendChild(createFooter());
 
 window.addEventListener('cartButtonClick', (e) => {
-    console.log("PASSOU AQUI");
     main.innerHTML = " ";
 
-    main.className = "d-flex min-w-100 min-h-100 w-100 flex-grow-1 justify-content-center my-5 h-100";
+    main.className = "d-flex min-w-100 min-h-100 w-100 flex-grow-1 justify-content-center my-5 h-auto";
     main.appendChild(createCartPage());
 });
 
