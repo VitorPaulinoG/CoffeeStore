@@ -132,7 +132,14 @@ header {
     border-color: #DEE2E6 !important;
     
 }
-
+.total-price {
+    min-height: 5rem;
+    height: 5rem;
+    max-height: 5rem;
+}
+.total-price-label {
+    min-width: 30rem;
+}
 .order-spinner:hover {
     background-color: var(--bs-dark)!important;
     color: #DEE2E6 !important;

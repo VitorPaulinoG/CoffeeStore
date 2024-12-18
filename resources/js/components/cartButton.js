@@ -1,5 +1,6 @@
 export const cartButton = document.createElement("button");
 export function createCartButton (productCount) {
+    cartButton.title = "Carrinho de Compras";
     cartButton.type = "button";
     cartButton.className = "btn btn-dark rounded-3 py-0 d-flex gap-3 align-items-center";
     cartButton.innerHTML = 

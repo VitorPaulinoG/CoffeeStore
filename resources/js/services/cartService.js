@@ -6,8 +6,9 @@ export function updateAmount(orderId, amount) {
     let order = cartMap.get(orderId);
     order.amount += amount;
     if(order.amount <= 0) {
+        if(order.amount < 0)
+            order.amount -= amount;        
         window.dispatchEvent(new OrderAmountClearedEvent(order));
-        return order.amount;
     }
     localStorage.setItem('cart', JSON.stringify([...cartMap]));
     return order.amount; 
@@ -40,6 +41,12 @@ export function getOrders () {
     let cart = JSON.parse(localStorage.getItem('cart'));
     const cartMap = new Map(cart);
     return Array.from(cartMap.values());
+}
+
+export function getTotalCost () {
+    let orders = getOrders().map(order => new Order(order.product, order.amount));
+    let costs = orders.map((order) => order.getTotalCost());
+    return costs.reduce((total, cost) => total += cost, 0);
 }
 
 export function getCartLength() {

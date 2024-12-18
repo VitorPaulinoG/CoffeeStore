@@ -52,8 +52,8 @@ export function createOrderCard (order) {
     const minus = card.querySelector(".minus");
     minus.addEventListener("click", () => {
         let amountBadge = card.querySelector(`#amount-badge-${order.product.id}`);
-        if(parseInt(amountBadge.innerText) <= 0) 
-            return;
+        // if(parseInt(amountBadge.innerText) <= 0) 
+        //     return;
         amountBadge.innerText = updateAmount (order.product.id, -1);
         window.dispatchEvent(new orderAddedOrUpdatedEvent());
     });

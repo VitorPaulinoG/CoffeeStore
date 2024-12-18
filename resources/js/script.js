@@ -21,9 +21,19 @@ root.appendChild(main);
 root.appendChild(createFooter());
 
 window.addEventListener('cartButtonClick', (e) => {
-    main.innerHTML = " ";
+    main.removeChild(mainContent);
 
     main.className = "d-flex min-w-100 min-h-100 w-100 flex-grow-1 justify-content-center my-5 h-auto";
-    main.appendChild(createCartPage());
+    mainContent = createCartPage();
+    main.appendChild(mainContent);
 });
+
+window.addEventListener('homePageRequested', async (e) => {
+    main.removeChild(mainContent);
+    main.className = "d-flex min-w-100 min-h-100 w-100 flex-grow-1 justify-content-center";
+    mainContent.innerHTML = "";
+    mainContent.replaceChildren();
+    mainContent = await createShoppingPage();
+    main.appendChild(mainContent);
+})
 
