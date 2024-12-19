@@ -1,6 +1,7 @@
 import { createFooter } from "./components/footer.js";
 import { createHeader } from "./components/header.js";
 import { createCartPage } from "./pages/cartPage.js";
+import { createPurchasePage } from "./pages/purchagePage.js";
 import { createShoppingPage } from "./pages/shoppingPage.js";
 
 const root = document.getElementById("root");
@@ -20,11 +21,19 @@ root.appendChild(createHeader());
 root.appendChild(main);
 root.appendChild(createFooter());
 
-window.addEventListener('cartButtonClick', (e) => {
+window.addEventListener('cartButtonClicked', (e) => {
     main.removeChild(mainContent);
 
     main.className = "d-flex min-w-100 min-h-100 w-100 flex-grow-1 justify-content-center my-5 h-auto";
     mainContent = createCartPage();
+    main.appendChild(mainContent);
+});
+
+window.addEventListener('finishPurchaseClicked', (e) => {
+    main.removeChild(mainContent);
+
+    main.className = "d-flex min-w-100 min-h-100 w-100 flex-grow-1 justify-content-center my-5 h-auto";
+    mainContent = createPurchasePage(e.detail.orders, e.detail.totalCost);
     main.appendChild(mainContent);
 });
 

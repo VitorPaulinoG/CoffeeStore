@@ -1,3 +1,5 @@
+import { CartButtonClickedEvent } from "../events/CartButtonClickedEvent.js";
+
 export const cartButton = document.createElement("button");
 export function createCartButton (productCount) {
     cartButton.title = "Carrinho de Compras";
@@ -11,8 +13,7 @@ export function createCartButton (productCount) {
         </span>
         `;
     cartButton.addEventListener('click', () => {
-        console.log("CLICOU");
-        window.dispatchEvent(new CustomEvent('cartButtonClick', {}));
+        window.dispatchEvent(new CartButtonClickedEvent());
     });
     let badge = cartButton.querySelector("#cart-badge");
     

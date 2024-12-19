@@ -3,7 +3,7 @@ import { HomePageRequested } from "../events/HomePageRequested.js";
 export const logo = document.createElement("span");
 export function createLogo() {
     logo.title = "Início";
-    logo.className = "fs-1 khandi-font";
+    logo.className = "fs-1 khandi-font pointer";
     logo.innerHTML = 
         `
         Coffee Store

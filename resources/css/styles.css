@@ -161,11 +161,17 @@ header {
 .product-card {
     width: 22rem;
 }
+
+.pointer {
+    cursor: pointer;
+}
 /* .order-list {
     justify-content: space-between;
     column-gap: 1rem;
 } */
-
+.address-input {
+    width: 29rem;
+}
 
 footer {
     justify-self: end;
