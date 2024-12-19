@@ -1,4 +1,4 @@
-import { orderAddedOrUpdatedEvent } from "../events/OrderAddedOrUpdatedEvent.js";
+import { OrderAddedOrUpdatedEvent } from "../events/OrderAddedOrUpdatedEvent.js";
 import { updateAmount, getCartLength } from "../services/cartService.js";
 
 
@@ -6,14 +6,14 @@ export function createOrderCard (order) {
 
     let card = document.createElement('div');
     card.id = `order${order.product.id}`;
-    card.className = "d-flex flex-row shadow rounded border border-0 order-card";
+    card.className = "d-flex shadow rounded border border-0 order-card";
     card.innerHTML = 
         `
             <div class="col-md-4">
                 <img src="${order.product.image}" 
                     class="img-fluid" alt="...">
             </div>
-            <div class="d-flex flex-row justify-content-start align-items-center inter-font">
+            <div class="order-card-content inter-font">
                 <div class="d-flex">
                     <div class="d-flex flex-column card-body row-gap-2 px-4 order-main-content">
                         <h5 class="card-title fw-semibold fs-4">
@@ -46,7 +46,7 @@ export function createOrderCard (order) {
         let amountBadge = card.querySelector(`#amount-badge-${order.product.id}`);
         
         amountBadge.innerText = updateAmount (order.product.id, 1);
-        window.dispatchEvent(new orderAddedOrUpdatedEvent());
+        window.dispatchEvent(new OrderAddedOrUpdatedEvent());
     });
 
     const minus = card.querySelector(".minus");
@@ -55,7 +55,7 @@ export function createOrderCard (order) {
         // if(parseInt(amountBadge.innerText) <= 0) 
         //     return;
         amountBadge.innerText = updateAmount (order.product.id, -1);
-        window.dispatchEvent(new orderAddedOrUpdatedEvent());
+        window.dispatchEvent(new OrderAddedOrUpdatedEvent());
     });
 
     return card;

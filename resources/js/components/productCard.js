@@ -1,4 +1,4 @@
-import { orderAddedOrUpdatedEvent } from "../events/OrderAddedOrUpdatedEvent.js";
+import { OrderAddedOrUpdatedEvent } from "../events/OrderAddedOrUpdatedEvent.js";
 import { addItem, getCartLength } from "../services/cartService.js";
 
 export function createProductCard (product) {
@@ -29,7 +29,7 @@ export function createProductCard (product) {
     const button = card.querySelector("button");
     button.addEventListener("click", () => {
         addItem (product);
-        window.dispatchEvent(new orderAddedOrUpdatedEvent());
+        window.dispatchEvent(new OrderAddedOrUpdatedEvent());
     })
     return card;
 }

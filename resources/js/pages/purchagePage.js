@@ -1,5 +1,6 @@
 import { CartButtonClickedEvent } from "../events/CartButtonClickedEvent.js";
-import { orderAddedOrUpdatedEvent } from "../events/OrderAddedOrUpdatedEvent.js";
+import { HomePageRequestedEvent } from "../events/HomePageRequestedEvent.js";
+import { OrderAddedOrUpdatedEvent } from "../events/OrderAddedOrUpdatedEvent.js";
 import { removeOrders } from "../services/cartService.js";
 
 export function createPurchasePage(orders, totalCost) {
@@ -45,7 +46,7 @@ export function createPurchasePage(orders, totalCost) {
 
     purchasePage.appendChild(div);
     let form = document.createElement("div");
-    form.className = "align-self-start w-100 inter-font";
+    form.className = "align-self-start w-100 inter-font form-content";
     form.innerHTML = 
         `
         
@@ -117,7 +118,8 @@ export function createPurchasePage(orders, totalCost) {
 
         alert('Compra confirmada!');
         removeOrders();
-        window.dispatchEvent(new orderAddedOrUpdatedEvent());
+        window.dispatchEvent(new OrderAddedOrUpdatedEvent());
+        window.dispatchEvent(new HomePageRequestedEvent);
 
     });
 

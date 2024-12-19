@@ -1,6 +1,6 @@
 import { getCartLength } from "../services/cartService.js";
 
-export class orderAddedOrUpdatedEvent extends CustomEvent {
+export class OrderAddedOrUpdatedEvent extends CustomEvent {
     constructor () {
         super('orderAdded', {
             detail: {

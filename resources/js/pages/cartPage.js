@@ -46,7 +46,7 @@ export function createCartPage() {
             <span class="d-flex total-price-label justify-content-center align-items-center khand-font fs-4 fw-medium">
                 Total
             </span>
-            <span class="d-flex flex-column badge p-3 order-badge text-dark rounded-0 w-100 justify-content-center align-items-center inter-font">
+            <span class="d-flex flex-column badge p-3 order-badge text-dark rounded-0 justify-content-center align-items-center inter-font">
                 <div class="hstack w-100 justify-content-center">
                     <span class="align-self-start fs-small fw-semibold">R$</span>
                     <span id="total-cost" class="fs-4 fw-semibold">${totalCost.toFixed(2)}</span>

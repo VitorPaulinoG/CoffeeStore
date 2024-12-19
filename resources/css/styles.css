@@ -123,10 +123,12 @@ header {
     max-height: 9rem; 
     max-width: 43rem;
     overflow: hidden;
+    flex-direction: row;
 }
 
 .order-badge {
     background-color: #F8F9FA;
+    width: 100%;
 }
 .order-spinner {
     border-color: #DEE2E6 !important;
@@ -217,6 +219,12 @@ header {
     grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
     row-gap: 20px;
 }
+.order-card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
 
 @media only screen and (max-width: 950px) {
     .product-list {
@@ -236,6 +244,23 @@ header {
     .banner-justification {
         justify-content: center !important;
     }
+
+
+    .cartPage {
+        max-width: 100%;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    .order-badge {
+        width: 320px;
+    }
+    .order-card {
+        max-width: 100%;
+    }
+    .total-price-label {
+        min-width: auto;
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 660px) {
@@ -243,8 +268,58 @@ header {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
+    .order-card {
+        min-height: 10rem;
+        min-width: 100%;
+    }
+    .btn-group-vertical {
+        width: 3rem !important;
+    }
+    .order-badge-container {
+        min-width: 320px !important;
+        width: 320px !important;
+        max-width: 320px !important;
+    }
+    .order-badge {
+        min-width: 320px !important;
+        width: 320px !important;
+        max-width: 320px !important;
+    }
+    .order-card-content div {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .order-card-content div div {
+        min-width: 70px !important;
+        width: 320px !important;
+        max-width: 320px !important;
+    }
+    .order-list {
+        width: 100%;
+    }
 
-    
+    .order-main-content div {
+        justify-content: start !important;
+    }
+    .order-main-content {
+        max-width: 288px;
+        width: 100%;
+    }
+    .order-card-content {
+        min-width: 100%;
+    }
+
+    .order-card img {
+        visibility: hidden;
+        width: 0px;
+    }
+    .address-input {
+        min-width: 100%;
+        width: 100%;
+    }
+    .form-content div {
+        flex-direction: column;
+    }
 }
 
 @media only screen and (max-width: 490px) {
@@ -259,27 +334,4 @@ header {
         right: 70px;
     }
 }
-/* @media only screen and (max-width: 1280px) {
-    .product-list {
-        justify-content: flex-start; 
-        column-gap: 3rem;
-    }
-}
-
-@media only screen and (max-width: 944px) {
-    .product-list {
-        justify-content: center; 
-       
-    }
-    .product-card {
-        width: 30rem;
-    }
-    .min-h-15rem {
-        min-height: 20rem;
-    }
-    .h-15rem {
-        height: 20rem;
-    }
-} */
-
 

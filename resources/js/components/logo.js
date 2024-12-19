@@ -1,4 +1,4 @@
-import { HomePageRequested } from "../events/HomePageRequested.js";
+import { HomePageRequestedEvent } from "../events/HomePageRequestedEvent.js";
 
 export const logo = document.createElement("span");
 export function createLogo() {
@@ -11,7 +11,7 @@ export function createLogo() {
         `;
 
     logo.addEventListener('click', (e) => {
-        window.dispatchEvent(new HomePageRequested());
+        window.dispatchEvent(new HomePageRequestedEvent());
     })
     return logo;
 }
