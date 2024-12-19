@@ -37,6 +37,10 @@ export function removeOrder (orderId) {
     cartMap.delete(orderId);
     localStorage.setItem('cart', JSON.stringify([...cartMap]));
 }
+
+export function removeOrders () {
+    localStorage.removeItem('cart');
+}
 export function getOrders () {
     let cart = JSON.parse(localStorage.getItem('cart'));
     const cartMap = new Map(cart);

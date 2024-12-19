@@ -56,61 +56,85 @@ export function createCartPage() {
         `;
     div.appendChild(total);
     cartPage.appendChild(div);
-    let finishPurchase = document.createElement("button");
-    finishPurchase.className = "btn btn-light w-100 shadow mt-3";
-    finishPurchase.innerText = "Finalizar Compra";
-    finishPurchase.addEventListener('click', (e) => {
-        window.dispatchEvent(new FinishPurchaseClickedEvent(getOrders().map(order => new Order(order.product, order.amount)), getTotalCost()));
+
+    let finishPurchaseButton = document.createElement("button");
+    finishPurchaseButton.className = "btn btn-white w-100 shadow mt-3";
+    finishPurchaseButton.innerText = "Finalizar Compra";
+
+    const checkItemsAmount = () => {
+        const hasItems = getOrders().some(order => order.amount > 0);
+        finishPurchaseButton.disabled = !hasItems; 
+    };
+
+    checkItemsAmount();
+
+    finishPurchaseButton.addEventListener('click', (e) => {
+        if (!finishPurchaseButton.disabled) {
+            window.dispatchEvent(new FinishPurchaseClickedEvent(getOrders().map(order => new Order(order.product, order.amount)), getTotalCost()));
+        }
     });
 
     cartPage.appendChild(div);
-    cartPage.appendChild(finishPurchase);
+    cartPage.appendChild(finishPurchaseButton);
+
+    let currentModalAction = null;
+
+    const removeBackdrops = () => {
+        let backdrops = document.getElementsByClassName("modal-backdrop fade show");
+        [...backdrops].forEach((element) => element.remove());
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = ''; 
+    };
 
 
-    let noButton = div.querySelector('#no-btn');
-    noButton.addEventListener('click', (e) => {
-        let modalElement = document.getElementById('myModal');
-        let modalInstance = bootstrap.Modal.getInstance(modalElement);
-    
+    let yesButton = div.querySelector('#yes-btn');
+    yesButton.addEventListener('click', (e) => {
+        if (currentModalAction) {
+            currentModalAction(); 
+        }
+        let modalInstance = bootstrap.Modal.getInstance(document.getElementById('myModal'));
         if (modalInstance) {
             modalInstance.hide();
         }
 
-        let backdrop = document.querySelector('.modal-backdrop');
-        if (backdrop) {
-            backdrop.remove();
+        removeBackdrops();
+    });
+
+
+    let noButton = div.querySelector('#no-btn');
+    noButton.addEventListener('click', (e) => {
+        let modalInstance = bootstrap.Modal.getInstance(document.getElementById('myModal'));
+        if (modalInstance) {
+            modalInstance.hide();
         }
-        document.body.classList.remove('modal-open');
-        document.body.style.overflow = ''; 
+
+        removeBackdrops();
     });
 
     window.addEventListener('orderAmountCleared', (e) => {
         let modalElement = document.getElementById('myModal');
         let description = modalElement.querySelector('#modal-description');
         description.innerText = `O pedido ${e.detail.order.product.title} foi zerado. Quer removê-lo?`;
-        var myModal = new bootstrap.Modal(modalElement);
-        let yesButton = modalElement.querySelector('#yes-btn');
-        yesButton.addEventListener('click', (e2) => {
+        
+        currentModalAction = () => {
             removeOrder(e.detail.order.product.id);
-            myModal.hide();
-            let backdrop = document.querySelector('.modal-backdrop');
-            if (backdrop) {
-                backdrop.remove();
-            }
-            document.body.classList.remove('modal-open');
-            document.body.style.overflow = ''; 
+
             div.removeChild(orderList);
             div.removeChild(total);
             orderList = createOrderList(getOrders());
             div.appendChild(orderList);
             div.appendChild(total);
-        });
-        myModal.show();
+        };
+        removeBackdrops();
+
+        var modalInstance = new bootstrap.Modal(modalElement);
+        modalInstance.show();
     });
     
     window.addEventListener('orderAdded', (e) => {
         let totalCost = total.querySelector("#total-cost");
         totalCost.innerText = `${getTotalCost().toFixed(2)}`;
+        checkItemsAmount();
     })    
     return cartPage;
 }
